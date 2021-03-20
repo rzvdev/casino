@@ -196,7 +196,7 @@ namespace SizzlingHot
                 tableArray[i] = table.Controls[i].Text;
             }
 
-            Dictionary<int, string> winnings = new Dictionary<int, string>(CheckRow1(tableArray));
+            Dictionary<int, string> winnings = new Dictionary<int, string>(CheckRows(tableArray));
 
             foreach (var element in winnings)
             {
@@ -205,10 +205,12 @@ namespace SizzlingHot
 
         }
 
-        private Dictionary<int,string> CheckRow1(string[] tableArray)
+        private Dictionary<int,string> CheckRows(string[] tableArray)
         {
+            // the int key represents the length of the gain and the string value represents the type of gain (melon, lemon, seven)
             Dictionary<int, string> winnings = new Dictionary<int, string>();
             
+            // check the first column in a straight line
             if (tableArray[0] == tableArray[1] && tableArray[1] == tableArray[2] && 
                 tableArray[2] == tableArray[3] && tableArray[3] == tableArray[4])
             {
@@ -224,7 +226,69 @@ namespace SizzlingHot
             {
                 winnings.Add(2,tableArray[0]);
             }
-
+            
+            // check the second column in a straight line
+            if (tableArray[5] == tableArray[6] && tableArray[6] == tableArray[7] && tableArray[7] == tableArray[8] &&
+                tableArray[8] == tableArray[9])
+            {
+                winnings.Add(5,tableArray[5]);
+            } else if (tableArray[5] == tableArray[6] && tableArray[6] == tableArray[7] &&
+                       tableArray[7] == tableArray[8])
+            {
+                winnings.Add(4,tableArray[5]);
+            } else if (tableArray[5] == tableArray[6] && tableArray[6] == tableArray[7])
+            {
+                winnings.Add(3,tableArray[5]);
+            } else if (tableArray[5] == tableArray[6])
+            {
+                winnings.Add(2,tableArray[5]);
+            }
+            
+            // check the third column in a straight line
+            if (tableArray[10] == tableArray[11] && tableArray[11] == tableArray[12] && tableArray[12] == tableArray[13] &&
+                tableArray[13] == tableArray[14])
+            {
+                winnings.Add(5,tableArray[10]);
+            } else if (tableArray[10] == tableArray[11] && tableArray[11] == tableArray[12] &&
+                       tableArray[12] == tableArray[13])
+            {
+                winnings.Add(4,tableArray[10]);
+            } else if (tableArray[10] == tableArray[11] && tableArray[11] == tableArray[12])
+            {
+                winnings.Add(3,tableArray[10]);
+            } else if (tableArray[10] == tableArray[11])
+            {
+                winnings.Add(2,tableArray[10]);
+            }
+            
+            // check the v-shaped row
+            if (tableArray[0] == tableArray[6] && tableArray[6] == tableArray[12] && tableArray[12] == tableArray[8] &&
+                tableArray[8] == tableArray[4])
+            {
+                winnings.Add(5,tableArray[0]);
+            } else if (tableArray[0] == tableArray[6] && tableArray[6] == tableArray[12] &&
+                       tableArray[12] == tableArray[8])
+            {
+                winnings.Add(4,tableArray[0]);
+            } else if (tableArray[0] == tableArray[6] && tableArray[6] == tableArray[12])
+            {
+                winnings.Add(3,tableArray[0]);
+            } 
+            
+            // check the reverse v-shaped column
+            if (tableArray[10] == tableArray[6] && tableArray[6] == tableArray[2] && tableArray[2] == tableArray[8] &&
+                tableArray[8] == tableArray[14])
+            {
+                winnings.Add(5,tableArray[10]);
+            } else if (tableArray[10] == tableArray[6] && tableArray[6] == tableArray[2] &&
+                       tableArray[2] == tableArray[8])
+            {
+                winnings.Add(4,tableArray[10]);
+            } else if (tableArray[10] == tableArray[6] && tableArray[6] == tableArray[2])
+            {
+                winnings.Add(3,tableArray[10]);
+            } 
+            
             return winnings;
         }
         
